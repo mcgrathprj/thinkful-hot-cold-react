@@ -1,8 +1,8 @@
 //this is the list of all my guesses
 
 import React from 'react';
-import './results.css';
+import './guess-list.css';
 
-export default function Results(props) {
+export default function GuessList(props) {
     return ();
 };

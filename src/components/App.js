@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Header from './header.js';
+import GuessCount from './guess-count.js';
 import GuessEntry from './guess-entry.js';
+import GuessList from './guess-list.js';
+import Header from './header.js';
 import Results from './results.js';
 
 

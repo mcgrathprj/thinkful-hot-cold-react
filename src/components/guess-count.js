@@ -1,4 +1,4 @@
-//this is the feedback -- youre hot and youre cold
+//this is how many guesses i have made
 
 import React from 'react';
 import './results.css';
@@ -6,4 +6,3 @@ import './results.css';
 export default function Results(props) {
     return ();
 };
-

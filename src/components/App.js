@@ -18,7 +18,6 @@ export default class App extends React.Component {
       correctAnswer: Math.floor(Math.random() * 100) + 1
     };
   }
-}
 
 restartGame() {
   this.setState({
@@ -40,18 +39,18 @@ makeGuess(input) {
   const difference = Math.abs (input - this.state.correctAnswer);
 
   let feedback;
-  if (difference >= 50) {feedback = "You\'re Cold As Ice"; 
-  } else if (difference >= 30) {feedback = 'You\'re Cold-ish';
-  } else if (difference >= 10) {feedback = 'You\'re Hot-ish';
-  } else if (difference >=1) {feedback = 'You\'re Fire';
-  } else {feedback = "You got it, dude!"; 
-  }
+  if (difference >= 50) {feedback = "You\'re Cold As Ice"; } 
+  else if (difference >= 30) {feedback = 'You\'re Cold-ish';} 
+  else if (difference >= 10) {feedback = 'You\'re Hot-ish';} 
+  else if (difference >=1) {feedback = 'You\'re Fire';} 
+  else {feedback = "You got it, dude!";}
 
   this.setState({
     feedback, 
     guesses: [. . . this.state.guesses, guess]
   });
 
+  document.title = feedback ? `${feedback} | Hot or Cold` : `Hot or Cold`;
 }
 
 generateAuralUpdate() {
@@ -93,3 +92,4 @@ render() {
       </div>
     );
   } 
+}

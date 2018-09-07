@@ -8,20 +8,88 @@ import Header from './header.js';
 import Results from './results.js';
 
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      guesses: [],
+      feedback: [],
+      auralStatus: '',
+      correctAnswer: Math.floor(Math.random() * 100) + 1
+    };
   }
 }
 
-export default App;
+restartGame() {
+  this.setState({
+    guesses: [],
+    feedback: 'Make a guess!',
+    auralStatus: '',
+    correctAnswer: Math.floor(Math.random() * 100) + 1,
+
+  });
+}
+
+makeGuess(input) {
+  input = parseInt(input, 10);
+  if (isNaN(input)) {
+    this.setState({ feedback: 'Please enter a valid number, OK?'}); 
+    return;
+  }
+
+  const difference = Math.abs (input - this.state.correctAnswer);
+
+  let feedback;
+  if (difference >= 50) {feedback = "You\'re Cold As Ice"; 
+  } else if (difference >= 30) {feedback = 'You\'re Cold-ish';
+  } else if (difference >= 10) {feedback = 'You\'re Hot-ish';
+  } else if (difference >=1) {feedback = 'You\'re Fire';
+  } else {feedback = "You got it, dude!"; 
+  }
+
+  this.setState({
+    feedback, 
+    guesses: [. . . this.state.guesses, guess]
+  });
+
+}
+
+generateAuralUpdate() {
+  const { guesses, feedback }
+
+  const pluralize = guesses.length != 1; 
+
+  let auralStatus = `Here's the status of the game right now! ${feedback} You've made ${guesses.length} ${pluralize ? 'guesses' : 'guess'}.`;
+
+ if (guesses.length > 0)  {
+  auralStatus += `${pluralize ? 'In order from most to least recent, they are . . . ' ? 'It was . . . '} ${guesses.reverse().join(', ')}`;  
+ }
+
+this.setState({ auralStatus });
+
+}
+
+render() {
+  const { feedback, guesses, auralStatus } = this.state;
+  const GuessCount = guesses.length; 
+
+  return (
+    <div>
+        <Header
+          onRestartGame={() => this.restartGame()}
+          onGenerateAuralUpdate={() => this.generateAuralUpdate()}
+        />
+        <main role="main">
+          <GuessSection
+            feedback={feedback}
+            guessCount={guessCount}
+            onMakeGuess={guess => this.makeGuess(guess)}
+          />
+          <StatusSection guesses={guesses} 
+            auralStatus={auralStatus}
+          />
+          <InfoSection />
+        </main>
+      </div>
+    );
+  } 

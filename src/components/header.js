@@ -1,7 +1,17 @@
 import React from 'react';
+
+import TopNav from './top-nav';
+
 import './header.css';
 
 export default function Header(props) {
-    return (<h2 onClick={e => {this.newGame(e)}>Create New Game</h2>);
-};
-
+  return (
+    <header>
+      <TopNav
+        onGenerateGameUpdate={() => props.onGenerateGameUpdate()}
+        onRestartGame={() => props.onRestartGame()}
+      />
+      <h1>Are you HOT or COLD?</h1>
+    </header>
+  );
+}

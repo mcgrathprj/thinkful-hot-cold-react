@@ -58,25 +58,25 @@ generateAuralUpdate() {
 
   const pluralize = guesses.length != 1; 
 
-  let auralStatus = `Here's the status of the game right now! ${feedback} You've made ${guesses.length} ${pluralize ? 'guesses' : 'guess'}.`;
+  let gameStatus = `Here's the status of the game right now! ${feedback} You've made ${guesses.length} ${pluralize ? 'guesses' : 'guess'}.`;
 
  if (guesses.length > 0)  {
-  auralStatus += `${pluralize ? 'In order from most to least recent, they are . . . ' ? 'It was . . . '} ${guesses.reverse().join(', ')}`;  
+  gameStatus += `${pluralize ? 'In order from most to least recent, they are . . . ' ? 'It was . . . '} ${guesses.reverse().join(', ')}`;  
  }
 
-this.setState({ auralStatus });
+this.setState({ gameStatus });
 
 }
 
 render() {
-  const { feedback, guesses, auralStatus } = this.state;
+  const { feedback, guesses, gameStatus } = this.state;
   const GuessCount = guesses.length; 
 
   return (
     <div>
         <Header
           onRestartGame={() => this.restartGame()}
-          onGenerateAuralUpdate={() => this.generateAuralUpdate()}
+          onGenerateAuralUpdate={() => this.generateGameUpdate()}
         />
         <main role="main">
           <GuessSection
@@ -85,7 +85,7 @@ render() {
             onMakeGuess={guess => this.makeGuess(guess)}
           />
           <StatusSection guesses={guesses} 
-            auralStatus={auralStatus}
+            gameStatus={gameStatus}
           />
           <InfoSection />
         </main>

@@ -1,0 +1,9 @@
+#guessCount {
+  margin: 10px auto;
+}
+
+#count {
+  display: inline-block;
+  vertical-align: middle;
+  color: #b4bac5;
+}
